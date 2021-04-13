@@ -1,0 +1,131 @@
+>> basic.local.git.pm:18: main();
+>> basic.local.git.pm:5:     my $rsep = $/;
+>> basic.local.git.pm:6:     undef $/;
+>> basic.local.git.pm:7:     my $xml = <DATA>;
+>> basic.local.git.pm:8:     $/ = $rsep;
+>> basic.local.git.pm:10:     warn "working on this xml:[\n$xml]";
+working on this xml:[
+<?xml version="1.0"?>
+<note
+  xmlns="https://raw.githubusercontent.com"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="https://raw.githubusercontent.com file:///root/stef/basic.git.xsd">
+  <!--
+  xsi:schemaLocation="https://raw.githubusercontent.com https://raw.githubusercontent.com/sbasile-ch/pub_stuff/master/basic.git.xsd">
+  -->
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>Don't forget me this weekend!</body>
+</note>
+] at basic.local.git.pm line 10, <DATA> line 1.
+>> basic.local.git.pm:12:     my %options;
+>> basic.local.git.pm:13:     my $validator = new XML::Validate::Xerces(%options);
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:21: 	my $class = shift;
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:22: 	my %options = @_;
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:23: 	my $self = {};
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:24: 	bless ($self, $class);
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:26: 	$self->clear_errors();
+>> /usr/local/share/perl5/XML/Validate/Base.pm:33: 	my $self = shift;
+>> /usr/local/share/perl5/XML/Validate/Base.pm:34: 	$self->{error} = undef;
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:27: 	$self->set_options(\%options,$VALID_OPTIONS);
+>> /usr/local/share/perl5/XML/Validate/Base.pm:38: 	my $self = shift;
+>> /usr/local/share/perl5/XML/Validate/Base.pm:39: 	my ($supplied_options,$valid_options) = @_;
+>> /usr/local/share/perl5/XML/Validate/Base.pm:40: 	foreach my $option (keys %{$supplied_options}) {
+>> /usr/local/share/perl5/XML/Validate/Base.pm:40: 	foreach my $option (keys %{$supplied_options}) {
+>> /usr/local/share/perl5/XML/Validate/Base.pm:45: 	$self->{options} = {%{$valid_options},%{$supplied_options}};
+>> /usr/local/share/perl5/XML/Validate/Base.pm:45: 	$self->{options} = {%{$valid_options},%{$supplied_options}};
+>> /usr/local/share/perl5/XML/Validate/Base.pm:45: 	$self->{options} = {%{$valid_options},%{$supplied_options}};
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:29: 	DUMP("Instantiating XML::Validate::Xerces", $self);
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:111: sub DUMP  { XML::Validate::Base::DUMP(@_)  }
+>> /usr/local/share/perl5/XML/Validate/Base.pm:57: sub DUMP {}
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:31: 	return $self;
+>> basic.local.git.pm:14:     my $valid = $validator->validate($xml) ? '' : 'in';
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:39: 	my $self = shift;
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:40: 	my ($xml) = @_;
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:41: 	TRACE("Validating with Xerces. XML => " . defined($xml) ? $xml : 'undef' );
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:110: sub TRACE { XML::Validate::Base::TRACE(@_) }
+>> /usr/local/share/perl5/XML/Validate/Base.pm:56: sub TRACE {}
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:43: 	$self->clear_errors();
+>> /usr/local/share/perl5/XML/Validate/Base.pm:33: 	my $self = shift;
+>> /usr/local/share/perl5/XML/Validate/Base.pm:34: 	$self->{error} = undef;
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:44: 	$self->{DOMParser} = undef;
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:46: 	die "validate called with no data to validate\n" unless defined $xml and length $xml > 0;
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:48: 	my $DOMparser = new XML::Xerces::XercesDOMParser;
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6036:     my $pkg = shift;
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6037:     my $self = XML::Xercesc::new_XercesDOMParser(@_);
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6038:     bless $self, $pkg if defined($self);
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:50: 	$self->_set_validation($DOMparser, $self->options->{strict_validation});
+>> /usr/local/share/perl5/XML/Validate/Base.pm:17: 	my $self = shift;
+>> /usr/local/share/perl5/XML/Validate/Base.pm:18: 	return $self->{options};
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:77: 	my $self = shift;
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:78: 	my $DOMparser = shift;
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:79: 	my $strict = shift;
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:81: 	TRACE("_set_validation called");
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:110: sub TRACE { XML::Validate::Base::TRACE(@_) }
+>> /usr/local/share/perl5/XML/Validate/Base.pm:56: sub TRACE {}
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:83: 	if ($strict) {
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:94: 		TRACE("Using no validation");
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:110: sub TRACE { XML::Validate::Base::TRACE(@_) }
+>> /usr/local/share/perl5/XML/Validate/Base.pm:56: sub TRACE {}
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:95: 		$DOMparser->setValidationScheme("$XML::Xerces::AbstractDOMParser::Val_Never");
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:96: 		$DOMparser->setDoSchema(0);
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:97: 		$DOMparser->setDoNamespaces(0);
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:98: 		$DOMparser->setValidationSchemaFullChecking(0);
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:99: 		$DOMparser->setLoadExternalDTD(0);
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:53: 	my $ErrorHandler = XML::Validate::Xerces::ErrorHandler->new($self);
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:122: 	my $class = shift;
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:123: 	my ($validator) = @_;
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:124: 	my $self = {
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:127: 	return bless($self,$class)
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:54: 	$DOMparser->setErrorHandler($ErrorHandler);
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6063:   my ($self,$handler) = @_;
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6064:   my $callback = XML::Xerces::PerlErrorCallbackHandler->new($handler);
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6391:     my $pkg = shift;
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6392:     my $self = XML::Xercesc::new_PerlErrorCallbackHandler(@_);
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6393:     bless $self, $pkg if defined($self);
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6065:   $XML::Xerces::REMEMBER{tied(% {$self})}->{__ERROR_HANDLER} = $callback;
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6065:   $XML::Xerces::REMEMBER{tied(% {$self})}->{__ERROR_HANDLER} = $callback;
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6067:   return XML::Xercesc::XercesDOMParser_setErrorHandler($self,$callback);
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:57: 	my $input = XML::Xerces::MemBufInputSource->new($xml,$self->options->{base_uri});
+>> /usr/local/share/perl5/XML/Validate/Base.pm:17: 	my $self = shift;
+>> /usr/local/share/perl5/XML/Validate/Base.pm:18: 	return $self->{options};
+>> /usr/local/lib64/perl5/XML/Xerces.pm:3394:   my $pkg = shift;
+>> /usr/local/lib64/perl5/XML/Xerces.pm:3396:   if (scalar @_ == 1) {
+>> /usr/local/lib64/perl5/XML/Xerces.pm:3400:   my $self = XML::Xercesc::new_MemBufInputSource(@_);
+>> /usr/local/lib64/perl5/XML/Xerces.pm:3402:   bless $self, $pkg if defined($self);
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:59: 	$DOMparser->parse($input);
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:61: 	if ($self->last_error) {
+>> /usr/local/share/perl5/XML/Validate/Base.pm:22: 	my $self = shift;
+>> /usr/local/share/perl5/XML/Validate/Base.pm:23: 	return $self->{error};
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:66: 	$self->{DOMParser} = $DOMparser;
+>> /usr/local/share/perl5/XML/Validate/Xerces.pm:67: 	return 1;
+>> /usr/local/lib64/perl5/XML/Xerces.pm:3406:     return unless $_[0]->isa('HASH');
+>> /usr/local/lib64/perl5/XML/Xerces.pm:3407:     my $self = tied(%{$_[0]});
+>> /usr/local/lib64/perl5/XML/Xerces.pm:3407:     my $self = tied(%{$_[0]});
+>> /usr/local/lib64/perl5/XML/Xerces.pm:3408:     return unless defined $self;
+>> /usr/local/lib64/perl5/XML/Xerces.pm:3409:     delete $ITERATORS{$self};
+>> /usr/local/lib64/perl5/XML/Xerces.pm:3410:     if (exists $OWNER{$self}) {
+>> /usr/local/lib64/perl5/XML/Xerces.pm:3411:         XML::Xercesc::delete_MemBufInputSource($self);
+>> /usr/local/lib64/perl5/XML/Xerces.pm:3412:         delete $OWNER{$self};
+>> /usr/local/lib64/perl5/XML/Xerces.pm:3406:     return unless $_[0]->isa('HASH');
+>> basic.local.git.pm:15:     warn "Document is ${valid}valid\n";
+Document is valid
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6042:     return unless $_[0]->isa('HASH');
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6043:     my $self = tied(%{$_[0]});
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6043:     my $self = tied(%{$_[0]});
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6044:     return unless defined $self;
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6045:     delete $ITERATORS{$self};
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6046:     if (exists $OWNER{$self}) {
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6047:         XML::Xercesc::delete_XercesDOMParser($self);
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6048:         delete $OWNER{$self};
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6042:     return unless $_[0]->isa('HASH');
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6397:     return unless $_[0]->isa('HASH');
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6398:     my $self = tied(%{$_[0]});
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6398:     my $self = tied(%{$_[0]});
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6399:     return unless defined $self;
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6400:     delete $ITERATORS{$self};
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6401:     if (exists $OWNER{$self}) {
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6402:         XML::Xercesc::delete_PerlErrorCallbackHandler($self);
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6403:         delete $OWNER{$self};
+>> /usr/local/lib64/perl5/XML/Xerces.pm:6397:     return unless $_[0]->isa('HASH');
