@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://xmlgw.companieshouse.gov.uk" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlgw.companieshouse.gov.uk" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.5" id="ChangeRegOfficeAddr">
+	<xs:include schemaLocation="../baseTypes-v2-5.xsd"/>
+	<xs:element name="ChangeRegisteredOfficeAddress" type="ChangeRegisteredOfficeAddressType"/>
+	<xs:complexType name="ChangeRegisteredOfficeAddressType">
+		<xs:sequence>
+			<xs:element name="Address" type="UKAddressType"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
