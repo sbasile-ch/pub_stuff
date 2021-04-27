@@ -1,0 +1,6 @@
+  XMLvalidation =>
+  {
+    libxml  => 1,
+  },
+);
+
