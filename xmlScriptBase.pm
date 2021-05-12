@@ -43,6 +43,7 @@ use vars qw(%c);
 
 my @arrayValues = ['DataSet','Document', 'ChannelRouting' ];
 
+our $configValidationKey = 'XMLvalidation';
 our @location_attributes = qw /xsi:schemaLocation xsi:noNamespaceSchemaLocation/;
 our %schema_locations = map { $_ => XML::LibXML::XPathExpression->new("//*[\@$_]")} @location_attributes;
 
@@ -159,24 +160,26 @@ sub _swap_to_local_schemas
     my ($self) = @_;
     my $dom = XML::LibXML->load_xml(string => $self->{_xml});
 
-    for my $key (keys %schema_locations) {
+    if ($dom) {
+        for my $key (keys %schema_locations) {
 
-        for my $node ($dom->findnodes($schema_locations{$key})) {
-            my $attr_value = $node->getAttribute($key);
-            my ($schema_ns, $schema_location) = split(' ', $attr_value);
-            if (index ($key, 'no') > 0){  #noNamespaceSchemaLocation vs schemaLocation
-               ($schema_ns, $schema_location) = ('', $schema_ns);
-            }
-            else {
-                $schema_ns .= ' ';
-            }
+            for my $node ($dom->findnodes($schema_locations{$key})) {
+                my $attr_value = $node->getAttribute($key);
+                my ($schema_ns, $schema_location) = split(' ', $attr_value);
+                if (index ($key, 'no') > 0){  #noNamespaceSchemaLocation vs schemaLocation
+                   ($schema_ns, $schema_location) = ('', $schema_ns);
+                }
+                else {
+                    $schema_ns .= ' ';
+                }
 
-            if ($schema_location =~ m|(/schema/.+?\.xsd$)|i) {
-                $node->setAttribute ($key, $schema_ns."file://$c{XMLvalidation}{localSchemasPath}$1");
+                if ($schema_location =~ m|(/schema/.+\.xsd$)|i) {
+                    $node->setAttribute ($key, $schema_ns."file://$c{$configValidationKey}{localSchemasPath}$1");
+                }
             }
         }
+        $self->{_xml} = $dom->toString;
     }
-    $self->{_xml} = $dom->toString;
 }
 #-----------------------------------------
 sub _validate
@@ -187,7 +190,8 @@ sub _validate
   my %options;
   my $doc;
   my $validator = new XML::Validate::Xerces(%options);
-  $self->_swap_to_local_schemas() if $c{XMLvalidation}{useLocalSchemas};
+  $self->_swap_to_local_schemas() if (exists $c{$configValidationKey} &&
+                                             $c{$configValidationKey}{useLocalSchemas});
   if ( $doc = $validator->validate( $self->{_xml} ) ) {
     warn "Document is valid\n";
   } else {
